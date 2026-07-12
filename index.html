@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgentHub Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="min-h-screen app-shell">
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="hero-orb hero-orb-primary"></div>
+        <div class="hero-orb hero-orb-secondary"></div>
+      </div>
+
+      <div class="mx-auto flex min-h-screen max-w-[1600px] flex-col lg:flex-row lg:px-6 lg:py-6">
+        <aside
+          class="glass-panel sticky top-0 z-20 flex items-center justify-between px-4 py-4 lg:top-6 lg:mr-6 lg:min-h-[calc(100vh-3rem)] lg:w-[280px] lg:flex-col lg:items-stretch lg:rounded-[28px] lg:px-5 lg:py-6"
+        >
+          <div>
+            <div class="flex items-center gap-3">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--surface-panel)] shadow-[0_18px_45px_rgba(11,28,48,0.08)]">
+                <span class="font-space text-lg font-bold tracking-[0.24em] text-[var(--primary)]">AH</span>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">AgentHub</p>
+                <h1 class="font-space text-xl font-bold text-[var(--text)]">Admin Platform</h1>
+              </div>
+            </div>
+            <p class="mt-5 max-w-xs text-sm leading-6 text-[var(--text-muted)] lg:block hidden">
+              Centro operativo para agentes, skills, despliegues y clientes con estado en vivo simulado.
+            </p>
+          </div>
+
+          <button
+            id="mobile-menu-toggle"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--surface-panel)] text-[var(--text)] shadow-[0_14px_34px_rgba(11,28,48,0.08)] lg:hidden"
+            type="button"
+            aria-label="Abrir menu"
+          >
+            <span class="text-xl">☰</span>
+          </button>
+
+          <nav id="sidebar-nav" class="hidden pt-6 lg:block lg:pt-10">
+            <ul class="space-y-2" id="nav-list"></ul>
+          </nav>
+
+          <div class="hidden lg:block">
+            <div class="rounded-[24px] bg-[var(--surface-elevated)] p-4 shadow-[0_20px_48px_rgba(11,28,48,0.06)]">
+              <p class="text-xs uppercase tracking-[0.28em] text-[var(--text-muted)]">Modo visual</p>
+              <div class="mt-3 flex items-center justify-between gap-3">
+                <div>
+                  <p class="font-medium text-[var(--text)]">Tema global</p>
+                  <p class="text-sm text-[var(--text-muted)]">Alterna toda la consola</p>
+                </div>
+                <button id="theme-toggle-desktop" class="theme-toggle" type="button" aria-label="Cambiar tema">
+                  <span class="theme-toggle-thumb"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <main class="flex-1 px-4 pb-8 pt-4 lg:px-0 lg:pt-0">
+          <header class="glass-panel mb-6 rounded-[28px] px-5 py-5 shadow-[0_24px_60px_rgba(11,28,48,0.06)]">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p class="text-xs uppercase tracking-[0.32em] text-[var(--text-muted)]">Panel interno</p>
+                <h2 id="view-title" class="font-space text-3xl font-bold text-[var(--text)]">Dashboard</h2>
+              </div>
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div class="rounded-[22px] bg-[var(--surface-elevated)] px-4 py-3 shadow-[0_16px_36px_rgba(11,28,48,0.05)]">
+                  <p class="text-xs uppercase tracking-[0.24em] text-[var(--text-muted)]">Estado general</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <span class="status-dot bg-[var(--primary)]"></span>
+                    <span class="font-medium text-[var(--text)]">Todos los servicios operativos</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between rounded-[22px] bg-[var(--surface-elevated)] px-4 py-3 shadow-[0_16px_36px_rgba(11,28,48,0.05)] lg:hidden">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.24em] text-[var(--text-muted)]">Tema</p>
+                    <p class="text-sm text-[var(--text)]">Claro / oscuro</p>
+                  </div>
+                  <button id="theme-toggle-mobile" class="theme-toggle" type="button" aria-label="Cambiar tema">
+                    <span class="theme-toggle-thumb"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <section id="view-dashboard" class="view-panel space-y-6"></section>
+          <section id="view-agents" class="view-panel hidden space-y-6"></section>
+          <section id="view-agent-detail" class="view-panel hidden space-y-6"></section>
+          <section id="view-skills" class="view-panel hidden space-y-6"></section>
+          <section id="view-deployments" class="view-panel hidden space-y-6"></section>
+          <section id="view-clients" class="view-panel hidden space-y-6"></section>
+        </main>
+      </div>
+    </div>
+
+    <div id="modal-root"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
